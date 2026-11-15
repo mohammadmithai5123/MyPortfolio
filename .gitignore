@@ -1,0 +1,9 @@
+upwork protfolio/
+*.zip
+Thumbs.db
+.DS_Store
+
+# unused leftovers from the first version (not referenced by the site)
+assets/img/work/shopify-stores/
+assets/img/work/wordpress-builds/
+assets/img/work/business-websites/

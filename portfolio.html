@@ -522,7 +522,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 28px}
     </div>
     <div class="hero-center">
       <div class="hero-photo-wrap">
-        <img src="111.png" alt="Mohammad Muslim" class="hero-photo"/>
+        <img src="assets/images/profile/111.png" alt="Mohammad Muslim" class="hero-photo"/>
       </div>
     </div>
     <div class="hero-right">
@@ -556,17 +556,17 @@ footer{background:var(--blue);color:#fff;padding:72px 0 28px}
     <p class="sec-sub reveal reveal-d1">End-to-end web solutions — from storefronts that convert to migrations that land clean.</p>
     <div class="services-grid">
       <article class="svc-card reveal reveal-d1">
-        <div class="svc-img"><img src="E-Commerce.png" alt="E-Commerce" loading="lazy"/></div>
+        <div class="svc-img"><img src="assets/images/services/E-Commerce.png" alt="E-Commerce" loading="lazy"/></div>
         <h3>E-COMMERCE</h3>
         <p>Shopify, WooCommerce, Magento & BigCommerce storefronts built to sell — custom themes, checkout flows, and performance tuned for conversion.</p>
       </article>
       <article class="svc-card reveal reveal-d2">
-        <div class="svc-img"><img src="WebDevelopment.png" alt="Web Development" loading="lazy"/></div>
+        <div class="svc-img"><img src="assets/images/services/WebDevelopment.png" alt="Web Development" loading="lazy"/></div>
         <h3>WEB DEVELOPMENT</h3>
         <p>WordPress, Webflow, and custom MERN builds. Clean frontends, solid backends, and sites that stay fast as they grow.</p>
       </article>
       <article class="svc-card reveal reveal-d3">
-        <div class="svc-img"><img src="Migration.png" alt="Migrations" loading="lazy"/></div>
+        <div class="svc-img"><img src="assets/images/services/Migration.png" alt="Migrations" loading="lazy"/></div>
         <h3>MIGRATIONS</h3>
         <p>Seamless Magento → Shopify / WordPress moves with SEO preserved, data intact, and zero drama at launch.</p>
       </article>
@@ -647,22 +647,22 @@ footer{background:var(--blue);color:#fff;padding:72px 0 28px}
     <p class="sec-sub reveal reveal-d1">The stacks I use to ship production-ready experiences.</p>
     <div class="plat-grid">
       <div class="plat-card reveal reveal-d1">
-        <img class="plat-ico" src="shopify.png" alt="Shopify" width="88" height="88"/>
+        <img class="plat-ico" src="assets/images/platforms/shopify/shopify.png" alt="Shopify" width="88" height="88"/>
         <h4>SHOPIFY</h4>
         <p>Themes, apps & high-converting stores</p>
       </div>
       <div class="plat-card reveal reveal-d2">
-        <img class="plat-ico" src="wordpress.png" alt="WordPress" width="88" height="88"/>
+        <img class="plat-ico" src="assets/images/platforms/wordpress/wordpress.png" alt="WordPress" width="88" height="88"/>
         <h4>WORDPRESS</h4>
         <p>Custom sites, Elementor & WooCommerce</p>
       </div>
       <div class="plat-card reveal reveal-d3">
-        <img class="plat-ico" src="react.png" alt="React / Node" width="88" height="88"/>
+        <img class="plat-ico" src="assets/images/platforms/react/react.png" alt="React / Node" width="88" height="88"/>
         <h4>REACT / NODE</h4>
         <p>MERN apps & API-driven platforms</p>
       </div>
       <div class="plat-card reveal reveal-d4">
-        <img class="plat-ico" src="magento.png" alt="Magento" width="88" height="88"/>
+        <img class="plat-ico" src="assets/images/platforms/magento/magento.png" alt="Magento" width="88" height="88"/>
         <h4>MAGENTO</h4>
         <p>Legacy builds & clean migrations out</p>
       </div>
@@ -679,6 +679,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 28px}
       <button class="filt active" data-f="all">All</button>
       <button class="filt" data-f="shopify">Shopify</button>
       <button class="filt" data-f="wordpress">WordPress</button>
+      <button class="filt" data-f="magento">Magento</button>
       <button class="filt" data-f="migration">Migrations</button>
       <button class="filt" data-f="custom">Custom</button>
     </div>
@@ -822,9 +823,9 @@ const featured=[
   {name:"Teton Gear",type:"Outdoor · Shopify",url:"https://tetongear.com/",img:"https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80"},
   {name:"EX1 Cosmetics",type:"Beauty · Shopify",url:"https://ex1cosmetics.com/",img:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80"},
   {name:"Trafalgar Travel",type:"Travel · WordPress",url:"https://www.trafalgar.com/en-us",img:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80"},
-  {name:"My Mochi",type:"F&B · Shopify",url:"https://www.mymochi.com/",img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80"},
-  {name:"Very Special Games",type:"Gaming · Custom",url:"https://www.veryspecialgames.com/",img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80"},
-  {name:"Silver Mirror",type:"Beauty · Custom",url:"https://silvermirror.com/",img:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80"},
+  {name:"My Mochi",type:"F&B · WooCommerce",url:"https://www.mymochi.com/",img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80"},
+  {name:"Very Special Games",type:"Gaming · Shopify Plus",url:"https://www.veryspecialgames.com/",img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80"},
+  {name:"Silver Mirror",type:"Beauty · WordPress + Custom",url:"https://silvermirror.com/",img:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80"},
 ];
 document.getElementById('worksGrid').innerHTML=featured.map(w=>
   '<article class="work-card reveal" onclick="window.open(\''+w.url+'\',\'_blank\')">'+
@@ -840,14 +841,14 @@ const projects=[
   {name:"Trafalgar Travel",url:"https://www.trafalgar.com/en-us",type:"Travel · Enterprise",desc:"Enterprise travel platform with tour listings, booking flows, and itinerary management.",f:"wordpress",fb:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=700&q=80"},
   {name:"Westcott Press",url:"https://westcottpress.com/",type:"Publishing · WordPress",desc:"Publishing house with custom catalog, author pages, and integrated ordering.",f:"wordpress",fb:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=700&q=80"},
   {name:"Kiefer",url:"https://www.kiefer.com/",type:"Sports · Shopify",desc:"Aquatic sports retailer with large catalog management and performance-tuned storefront.",f:"shopify",fb:"https://images.unsplash.com/photo-1530549387789-4c1017266635?w=700&q=80"},
-  {name:"US Jewelry Factory",url:"https://www.usjewelryfactory.com/",type:"Jewelry · E-Commerce",desc:"Custom jewelry platform with product configurator and wholesale trade portal.",f:"wordpress",fb:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=700&q=80"},
-  {name:"My Mochi Ice Cream",url:"https://www.mymochi.com/",type:"F&B · Shopify",desc:"National ice cream brand with flavor explorer, store finder, and subscription.",f:"shopify",fb:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=700&q=80"},
+  {name:"US Jewelry Factory",url:"https://www.usjewelryfactory.com/",type:"Jewelry · Magento",desc:"Custom jewelry platform with product configurator and wholesale trade portal.",f:"magento",fb:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=700&q=80"},
+  {name:"My Mochi Ice Cream",url:"https://www.mymochi.com/",type:"F&B · WordPress / WooCommerce",desc:"National ice cream brand with flavor explorer, store finder, and subscription.",f:"wordpress",fb:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=700&q=80"},
   {name:"Lira Learning",url:"https://liralearning.com/",type:"EdTech · WordPress",desc:"Education platform with course management, student portals, and LMS integration.",f:"wordpress",fb:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&q=80"},
   {name:"Automation Werks",url:"https://www.automationwerks.com/",type:"Industrial · B2B",desc:"B2B industrial automation website with product catalog and lead generation.",f:"wordpress",fb:"https://images.unsplash.com/photo-1565043666747-69f6646db940?w=700&q=80"},
-  {name:"Very Special Games",url:"https://www.veryspecialgames.com/",type:"Gaming · Custom",desc:"Custom gaming studio site with dynamic title showcases and interactive visuals.",f:"custom",fb:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=700&q=80"},
+  {name:"Very Special Games",url:"https://www.veryspecialgames.com/",type:"Gaming · Shopify Plus",desc:"Custom gaming studio site with dynamic title showcases and interactive visuals.",f:"shopify",fb:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=700&q=80"},
   {name:"New South Botanicals",url:"http://newsouthbotanicals.com/",type:"Wellness · E-Commerce",desc:"Botanical wellness brand with product education pages and subscription.",f:"wordpress",fb:"https://images.unsplash.com/photo-1550159930-40066082a4fc?w=700&q=80"},
   {name:"Roger Kallen",url:"https://www.rogerkallen.com/",type:"Art · Portfolio",desc:"Fine art photographer portfolio with gallery management and print ordering.",f:"custom",fb:"https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=700&q=80"},
-  {name:"Silver Mirror Facial Bar",url:"https://silvermirror.com/",type:"Beauty · Custom",desc:"Luxury facial bar brand with AI-powered booking and editorial UX.",f:"custom",fb:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&q=80"},
+  {name:"Silver Mirror Facial Bar",url:"https://silvermirror.com/",type:"Beauty · WordPress + Custom",desc:"Luxury facial bar brand with AI-powered booking and editorial UX.",f:"wordpress",fb:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&q=80"},
   {name:"Temptu",url:"https://temptu.com/",type:"Pro Makeup · Migration",desc:"Magento to Shopify migration preserving product data and order history.",f:"migration",isMig:true,migLabel:"Magento → Shopify",fb:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=700&q=80"},
   {name:"Bioeffect",url:"https://bioeffect.de/",type:"Skincare · Migration",desc:"Skincare re-platformed from Magento to Shopify with multi-currency.",f:"migration",isMig:true,migLabel:"Magento → Shopify",fb:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=700&q=80"},
 ];

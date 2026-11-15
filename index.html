@@ -1,875 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Mohammad Muslim — Web Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --blue:#5B7BD5;
-  --blue-dark:#4A6BC8;
-  --yellow:#E2F13C;
-  --white:#FFFFFF;
-  --off:#F4F5F7;
-  --ink:#111111;
-  --muted:#5A5A5A;
-  --max:1200px;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--white);line-height:1.6;overflow-x:hidden}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
-
-/* ══ NAV ══ */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:var(--blue);
-  transition:box-shadow .25s,padding .25s;
-}
-.nav-inner{
-  max-width:var(--max);margin:0 auto;padding:18px 28px;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-}
-.nav.scrolled{box-shadow:0 8px 28px rgba(0,0,0,.18)}
-.logo{
-  font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.04em;
-  color:#fff;line-height:1;
-}
-.logo span{color:var(--yellow)}
-.nav-links{display:flex;align-items:center;gap:28px}
-.nav-links a{
-  color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  opacity:.9;transition:color .2s,opacity .2s;
-}
-.nav-links a:hover,.nav-links a.active{color:var(--yellow);opacity:1}
-.btn-hire{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  background:var(--yellow);color:var(--ink);
-  font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  padding:12px 26px;border-radius:999px;transition:transform .2s,box-shadow .2s;
-}
-.btn-hire:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
-.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:6px}
-.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:5px 0}
-
-/* ══ HERO ══ */
-.hero{
-  background:var(--blue);min-height:100vh;padding:100px 0 0;
-  position:relative;overflow:hidden;color:#fff;
-}
-.hero::before,.hero::after{
-  content:'';position:absolute;border-radius:50%;pointer-events:none;z-index:0;
-  filter:blur(40px);opacity:.45;
-  animation:heroOrb 14s ease-in-out infinite;
-}
-.hero::before{
-  width:420px;height:420px;top:8%;left:-8%;
-  background:radial-gradient(circle,rgba(226,241,60,.35),transparent 70%);
-}
-.hero::after{
-  width:380px;height:380px;bottom:5%;right:-6%;
-  background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);
-  animation-delay:-7s;animation-direction:reverse;
-}
-@keyframes heroOrb{
-  0%,100%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(24px,-30px) scale(1.08)}
-}
-.hero-grid{
-  max-width:var(--max);margin:0 auto;padding:0 28px;
-  display:grid;grid-template-columns:1fr minmax(280px,.85fr) 1fr;
-  align-items:stretch;gap:12px;
-  min-height:calc(100vh - 100px);
-  position:relative;z-index:1;
-}
-.hero-left{
-  padding:40px 0 64px;display:flex;flex-direction:column;justify-content:center;z-index:3;
-}
-.hero-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3.4rem,7.2vw,6.4rem);
-  line-height:.88;letter-spacing:.02em;margin-bottom:22px;
-  opacity:0;animation:heroInLeft .9s cubic-bezier(.16,1,.3,1) .15s forwards;
-}
-.hero-hi{
-  font-family:'Bebas Neue',sans-serif;font-size:clamp(1.2rem,2vw,1.55rem);
-  letter-spacing:.06em;margin-bottom:12px;
-  opacity:0;animation:heroInLeft .8s cubic-bezier(.16,1,.3,1) .35s forwards;
-}
-.hero-copy{
-  max-width:300px;font-size:.72rem;line-height:1.75;opacity:0;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;
-  animation:heroInLeft .8s cubic-bezier(.16,1,.3,1) .5s forwards;
-}
-.hero-center{
-  display:flex;align-items:flex-end;justify-content:center;
-  position:relative;z-index:2;align-self:end;
-}
-.hero-photo-wrap{
-  position:relative;width:100%;max-width:460px;
-  display:flex;align-items:flex-end;justify-content:center;
-  opacity:0;animation:heroPhotoIn 1s cubic-bezier(.16,1,.3,1) .25s forwards;
-}
-.hero-photo-wrap::before{
-  content:'';position:absolute;bottom:8%;left:50%;transform:translateX(-50%);
-  width:70%;height:28%;border-radius:50%;
-  background:radial-gradient(ellipse,rgba(226,241,60,.35),transparent 70%);
-  filter:blur(18px);z-index:0;
-  animation:heroGlow 3.5s ease-in-out infinite;
-}
-.hero-photo{
-  position:relative;z-index:1;
-  width:100%;height:auto;max-height:min(88vh,760px);object-fit:contain;object-position:bottom center;
-  filter:drop-shadow(0 18px 40px rgba(0,0,0,.28));
-  animation:heroFloat 5.5s ease-in-out 1.2s infinite;
-}
-.hero-right{
-  padding:40px 0 64px;display:flex;flex-direction:column;align-items:flex-end;
-  text-align:right;justify-content:space-between;z-index:3;
-}
-.follow-block{
-  display:flex;flex-direction:column;align-items:flex-end;gap:14px;
-  opacity:0;animation:heroInRight .8s cubic-bezier(.16,1,.3,1) .2s forwards;
-}
-.follow-label{
-  font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.14em;
-}
-.hero-social{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-.hero-social a{
-  width:42px;height:42px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;
-  opacity:0;transform:scale(.7);
-  animation:heroPop .5s cubic-bezier(.16,1,.3,1) forwards;
-  transition:background .2s,border-color .2s,color .2s,transform .2s;
-}
-.hero-social a:nth-child(1){animation-delay:.45s}
-.hero-social a:nth-child(2){animation-delay:.55s}
-.hero-social a:nth-child(3){animation-delay:.65s}
-.hero-social a:nth-child(4){animation-delay:.75s}
-.hero-social a:hover{background:var(--yellow);border-color:var(--yellow);color:var(--ink);transform:scale(1.1)}
-.hero-social svg{width:16px;height:16px;fill:currentColor}
-.hero-right-copy{
-  max-width:240px;font-size:.68rem;line-height:1.7;font-weight:700;
-  letter-spacing:.05em;text-transform:uppercase;margin:24px 0 auto;
-  opacity:0;animation:heroInRight .8s cubic-bezier(.16,1,.3,1) .55s forwards;
-}
-.hero-title-r{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3.4rem,7.2vw,6.4rem);
-  line-height:.88;letter-spacing:.02em;margin-top:auto;
-  opacity:0;animation:heroInRight .9s cubic-bezier(.16,1,.3,1) .4s forwards;
-}
-@keyframes heroInLeft{
-  from{opacity:0;transform:translateX(-36px)}
-  to{opacity:1;transform:translateX(0)}
-}
-@keyframes heroInRight{
-  from{opacity:0;transform:translateX(36px)}
-  to{opacity:1;transform:translateX(0)}
-}
-@keyframes heroPhotoIn{
-  from{opacity:0;transform:translateY(48px) scale(.94)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
-@keyframes heroFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
-}
-@keyframes heroGlow{
-  0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}
-  50%{opacity:.9;transform:translateX(-50%) scale(1.12)}
-}
-@keyframes heroPop{
-  from{opacity:0;transform:scale(.7)}
-  to{opacity:1;transform:scale(1)}
-}
-@media (prefers-reduced-motion:reduce){
-  .hero::before,.hero::after,.hero-title,.hero-hi,.hero-copy,.hero-photo-wrap,
-  .follow-block,.hero-social a,.hero-right-copy,.hero-title-r,.hero-photo,.hero-photo-wrap::before{
-    animation:none!important;opacity:1!important;transform:none!important;
-  }
-}
-
-/* ══ SECTION HEADS ══ */
-.sec{padding:100px 0;position:relative}
-.sec-h{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.4rem,5vw,3.6rem);
-  letter-spacing:.03em;margin-bottom:12px;line-height:1;
-}
-.sec-sub{max-width:520px;margin-bottom:48px;font-size:.95rem;line-height:1.7;opacity:.85;font-weight:500}
-.sec-blue .sec-sub{opacity:.9}
-.sec-white .sec-sub,.sec-off .sec-sub{color:var(--muted);opacity:1}
-.sec-blue{background:var(--blue);color:#fff}
-.sec-white{background:var(--white);color:var(--ink)}
-.sec-off{background:var(--off);color:var(--ink)}
-
-/* scroll reveal */
-.reveal{
-  opacity:0;transform:translateY(28px);
-  transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);
-}
-.reveal.in{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.08s}
-.reveal-d2{transition-delay:.16s}
-.reveal-d3{transition-delay:.24s}
-.reveal-d4{transition-delay:.32s}
-
-/* ══ SERVICES ══ */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.svc-card{
-  background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:14px 14px 26px;
-  transition:transform .3s,box-shadow .3s;overflow:hidden;
-}
-.svc-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(91,123,213,.18)}
-.svc-img{
-  position:relative;overflow:hidden;border-radius:12px;margin-bottom:18px;
-}
-.svc-card img{
-  width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--off);
-  transition:transform .5s;
-}
-.svc-card:hover img{transform:scale(1.06)}
-.svc-card h3{
-  font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:.04em;margin:0 8px 10px;
-}
-.svc-card p{color:var(--muted);font-size:.9rem;line-height:1.7;margin:0 8px}
-
-/* ══ WORKS ══ */
-.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.work-card{cursor:pointer}
-.work-thumb{
-  position:relative;overflow:hidden;border-radius:12px;
-  background:rgba(255,255,255,.12);
-}
-.work-card img{
-  width:100%;aspect-ratio:4/3;object-fit:cover;
-  transition:transform .5s;
-}
-.work-card:hover img{transform:scale(1.06)}
-.work-over{
-  position:absolute;inset:0;background:rgba(17,17,17,.45);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:opacity .3s;
-}
-.work-card:hover .work-over{opacity:1}
-.work-over span{
-  background:var(--yellow);color:var(--ink);padding:10px 18px;border-radius:999px;
-  font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-  transform:translateY(8px);transition:transform .3s;
-}
-.work-card:hover .work-over span{transform:translateY(0)}
-.work-card h4{
-  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.04em;
-  margin-top:14px;color:#fff;
-}
-.work-card span.work-type{display:block;font-size:.75rem;opacity:.75;margin-top:2px;font-weight:600}
-.works-more{margin-top:44px;text-align:center}
-.btn-outline{
-  display:inline-flex;align-items:center;gap:8px;
-  border:2px solid #fff;color:#fff;padding:12px 28px;border-radius:999px;
-  font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  transition:background .2s,color .2s,transform .2s;
-}
-.btn-outline:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow);transform:translateY(-2px)}
-
-/* ══ STATS ══ */
-.stats{
-  background:linear-gradient(180deg,var(--blue-dark),var(--blue));color:#fff;
-  border-top:1px solid rgba(255,255,255,.12);
-  padding:64px 0;
-}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
-.stat-item{
-  padding:12px 8px;position:relative;
-}
-.stat-item:not(:last-child)::after{
-  content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:rgba(255,255,255,.2);
-}
-.stat-n{
-  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,4.2rem);
-  line-height:1;letter-spacing:.02em;color:var(--yellow);
-}
-.stat-l{font-size:.85rem;opacity:.9;margin-top:8px;font-weight:600}
-
-/* ══ PROCESS ══ */
-.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.proc-card{
-  background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:12px 12px 22px;
-  transition:transform .3s,box-shadow .3s;
-}
-.proc-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(91,123,213,.14)}
-.proc-card img{
-  width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;margin-bottom:16px;background:var(--off);
-  transition:transform .45s;
-}
-.proc-card:hover img{transform:scale(1.04)}
-.proc-card h3{
-  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.04em;margin:0 6px 8px;
-}
-.proc-card h3 em{
-  font-style:normal;display:inline-flex;align-items:center;justify-content:center;
-  width:28px;height:28px;border-radius:50%;background:var(--yellow);color:var(--ink);
-  font-size:.9rem;margin-right:8px;vertical-align:middle;
-}
-.proc-card p{color:var(--muted);font-size:.86rem;line-height:1.65;margin:0 6px}
-
-/* ══ TESTIMONIALS ══ */
-.t-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:16px}
-.t-head .sec-h{margin-bottom:0}
-.t-dots{display:flex;gap:8px;padding-top:10px}
-.t-dot{width:10px;height:10px;border-radius:50%;background:#ddd;border:0;cursor:pointer;padding:0;transition:background .2s,transform .2s}
-.t-dot.active{background:var(--yellow);transform:scale(1.15)}
-.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:32px}
-.t-card{
-  background:#fff;border-radius:16px;padding:30px 28px;
-  box-shadow:0 10px 36px rgba(0,0,0,.07);
-  display:flex;flex-direction:column;min-height:280px;
-  border:1px solid rgba(0,0,0,.04);
-  transition:transform .25s,box-shadow .25s;
-  animation:tFade .45s ease;
-}
-@keyframes tFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.t-card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.1)}
-.t-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.t-stars{display:flex;gap:3px;color:#F5B301}
-.t-stars svg{width:16px;height:16px;fill:currentColor}
-.t-mark{
-  font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:.7;
-  color:var(--blue);opacity:.25;
-}
-.t-quote{font-size:.95rem;line-height:1.75;color:#333;margin-bottom:24px;flex:1}
-.t-person{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid #eee}
-.t-avatar{
-  width:56px;height:56px;border-radius:50%;flex-shrink:0;
-  object-fit:cover;border:2px solid #fff;
-  box-shadow:0 0 0 2px var(--blue);
-  background:var(--blue);
-}
-.t-name{font-weight:800;font-size:.95rem;color:var(--ink)}
-.t-role{font-size:.76rem;color:var(--muted);font-weight:600;margin-top:2px}
-
-/* ══ PLATFORMS ══ */
-.plat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.plat-card{
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
-  border-radius:16px;padding:32px 20px;text-align:center;
-  transition:background .25s,transform .25s,box-shadow .25s;
-}
-.plat-card:hover{
-  background:rgba(255,255,255,.18);transform:translateY(-6px);
-  box-shadow:0 16px 40px rgba(0,0,0,.18);
-}
-.plat-ico{
-  width:88px;height:88px;margin:0 auto 16px;border-radius:22px;
-  display:block;object-fit:contain;background:transparent;
-  transition:transform .3s;
-}
-.plat-card:hover .plat-ico{transform:scale(1.08) rotate(-3deg)}
-.plat-card h4{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.04em;margin-bottom:6px}
-.plat-card p{font-size:.8rem;opacity:.8;line-height:1.5}
-
-/* ══ CTA ══ */
-.cta{padding:110px 0;background:var(--white);position:relative;overflow:hidden}
-.cta::before{
-  content:'';position:absolute;width:420px;height:420px;border-radius:50%;
-  background:radial-gradient(circle,rgba(91,123,213,.12),transparent 70%);
-  top:-120px;right:-80px;pointer-events:none;
-}
-.cta-inner{
-  max-width:var(--max);margin:0 auto;padding:0 28px;
-  display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;
-}
-.cta-h{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.8rem,6vw,5rem);line-height:.92;letter-spacing:.02em;max-width:640px;
-}
-.cta-btn{
-  width:150px;height:150px;border-radius:50%;flex-shrink:0;
-  background:var(--yellow);color:var(--ink);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:.06em;
-  transition:transform .25s,box-shadow .25s;
-  box-shadow:0 12px 36px rgba(0,0,0,.12);
-  animation:ctaPulse 2.8s ease-in-out infinite;
-}
-@keyframes ctaPulse{
-  0%,100%{box-shadow:0 12px 36px rgba(0,0,0,.12),0 0 0 0 rgba(226,241,60,.5)}
-  50%{box-shadow:0 16px 44px rgba(0,0,0,.16),0 0 0 16px rgba(226,241,60,0)}
-}
-.cta-btn:hover{transform:scale(1.06);animation:none;box-shadow:0 18px 44px rgba(0,0,0,.18)}
-.cta-btn small{font-family:'Manrope',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.14em;margin-top:4px}
-
-/* ══ FOOTER ══ */
-footer{background:var(--blue);color:#fff;padding:72px 0 28px}
-.foot-top{
-  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;
-  padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.18);
-}
-.foot-email{
-  font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);
-  letter-spacing:.03em;line-height:1.1;word-break:break-all;transition:color .2s;
-}
-.foot-email:hover{color:var(--yellow)}
-.foot-col h5{
-  font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.06em;margin-bottom:16px;
-}
-.foot-col a,.foot-col p{
-  display:block;font-size:.88rem;opacity:.85;margin-bottom:10px;font-weight:500;transition:opacity .2s,color .2s;
-}
-.foot-col a:hover{opacity:1;color:var(--yellow)}
-.foot-bottom{
-  padding-top:22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
-}
-.foot-bottom p{font-size:.8rem;opacity:.7}
-.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.04em}
-.foot-logo span{color:var(--yellow)}
-
-/* ══ ALL PROJECTS ══ */
-#projects.sec{padding-top:72px}
-.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
-.filt{
-  padding:10px 18px;border-radius:999px;border:1.5px solid rgba(255,255,255,.35);
-  background:transparent;color:#fff;font-size:.75rem;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:inherit;
-  transition:background .2s,color .2s,border-color .2s,transform .2s;
-}
-.filt.active,.filt:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow);transform:translateY(-1px)}
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.pcard{
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
-  border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .3s,background .3s,box-shadow .3s;
-}
-.pcard:hover{transform:translateY(-6px);background:rgba(255,255,255,.14);box-shadow:0 18px 40px rgba(0,0,0,.2)}
-.pcard-thumb{position:relative;aspect-ratio:16/10;overflow:hidden}
-.pcard-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.pcard:hover .pcard-thumb img{transform:scale(1.06)}
-.mbadge{
-  position:absolute;top:10px;right:10px;background:var(--yellow);color:var(--ink);
-  font-size:.65rem;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:.04em;text-transform:uppercase;
-}
-.pcard-body{padding:16px 18px 20px}
-.pcard-type{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:4px}
-.pcard-title{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.03em}
-.pcard-desc{font-size:.82rem;opacity:.8;margin-top:6px;line-height:1.55}
-
-@media (prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
-  .cta-btn{animation:none}
-}
-
-/* ══ RESPONSIVE ══ */
-@media(max-width:1024px){
-  .hero-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .hero-left{grid-column:1;padding-bottom:24px}
-  .hero-right{grid-column:2;padding-bottom:24px;justify-content:flex-start;gap:20px}
-  .hero-center{grid-column:1/-1;order:-1;justify-content:center;padding-top:12px}
-  .hero-photo-wrap{max-width:340px}
-  .hero-right-copy{margin:0}
-  .stat-item:not(:last-child)::after{display:none}
-  .services-grid,.t-grid,.process-grid{grid-template-columns:1fr 1fr}
-  .works-grid,.pgrid,.plat-grid{grid-template-columns:1fr 1fr}
-  .stats-grid{grid-template-columns:1fr 1fr;gap:32px}
-  .foot-top{grid-template-columns:1fr 1fr}
-}
-@media(max-width:768px){
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--blue-dark);
-    flex-direction:column;padding:20px;gap:16px;border-top:1px solid rgba(255,255,255,.15)}
-  .nav-links.open{display:flex}
-  .nav-toggle{display:block}
-  .hero-grid{grid-template-columns:1fr;text-align:center;min-height:auto;padding-bottom:48px}
-  .hero-left,.hero-right{align-items:center;text-align:center;padding-bottom:16px}
-  .hero-copy,.hero-right-copy{max-width:100%;margin:0 auto}
-  .follow-block{align-items:center}
-  .hero-social{justify-content:center}
-  .services-grid,.t-grid,.process-grid,.works-grid,.pgrid,.plat-grid,.stats-grid,.foot-top{grid-template-columns:1fr}
-  .cta-inner{flex-direction:column;text-align:center}
-  .cta-btn{width:130px;height:130px}
-}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohammad Muslim — Freelance Designer & Developer in the UAE</title>
+<meta name="description" content="Freelance designer and developer based in the UAE. Shopify, WordPress and Magento builds, brand identity, UI/UX and packaging for brands in the Gulf and worldwide.">
+<meta property="og:title" content="Mohammad Muslim — Freelance Designer & Developer in the UAE">
+<meta property="og:description" content="Freelance designer and developer based in the UAE. Shopify, WordPress and Magento builds, brand identity, UI/UX and packaging for brands in the Gulf and worldwide.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohammadmithai5123.github.io/MyPortfolio/">
+<meta property="og:site_name" content="Mohammad Muslim">
+<meta property="og:image" content="https://mohammadmithai5123.github.io/MyPortfolio/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mohammadmithai5123.github.io/MyPortfolio/">
+<meta name="theme-color" content="#1c1d20">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c1d20'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/dist/style.min.css?v=17c9fb30">
+<script>(function(d){var h=d.documentElement;h.classList.add('js');try{if(localStorage.getItem('lang')==='ar'){h.lang='ar';h.dir='rtl'}}catch(e){}try{if(sessionStorage.getItem('pt')==='1'){h.classList.add('pt-in')}else if('home'==='home'&&!sessionStorage.getItem('seen')){h.classList.add('show-loader')}}catch(e){}setTimeout(function(){h.classList.remove('pt-in','show-loader')},9000);if(location.protocol==='file:'){var l=d.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..600&family=Noto+Sans+Arabic:wght@400..600&family=Noto+Sans+Devanagari:wght@400..500&display=swap';d.head.appendChild(l)}else{var p=d.createElement('link');p.rel='preload';p.as='font';p.type='font/woff2';p.crossOrigin='anonymous';p.href='assets/fonts/inter-tight-latin.woff2';d.head.appendChild(p)}})(document)</script>
+<link rel="preload" as="image" href="assets/img/profile-cutout-640.webp" imagesrcset="assets/img/profile-cutout-640.webp 640w, assets/img/profile-cutout.webp 1024w" imagesizes="(max-width:1000px) 86vw, 40vw" fetchpriority="high">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mohammad Muslim","jobTitle":"Freelance Designer & Developer","address":{"@type":"PostalAddress","addressCountry":"AE"},"knowsAbout":["Shopify","WordPress","Magento","Brand identity","UI/UX design"]}</script>
+<noscript><style>.loader,.curtain{display:none!important}.fade-in,.shot{opacity:1!important;transform:none!important}.span-lines .w>span{transform:none!important}.stripe.animate{transform:none!important}</style></noscript>
 </head>
-<body>
-
-<!-- NAV -->
-<header class="nav" id="mainNav">
-  <div class="nav-inner">
-    <a href="#" class="logo">MOHAMMAD</a>
-    <nav class="nav-links" id="navLinks">
-      <a href="#home" class="active">Home</a>
-      <a href="#services">Services</a>
-      <a href="#works">Works</a>
-      <a href="#testimonials">Testimonial</a>
-      <a href="#contact">Contact Us</a>
-    </nav>
-    <a href="#contact" class="btn-hire">Hire Me &#8599;</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
+<body data-page="home">
+<a class="skip" href="#main" data-i18n="ui.skip">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+<div class="loader" aria-hidden="true"><div class="loader-words"><h2>Hello<i class="dot"></i></h2><h2>नमस्ते<i class="dot"></i></h2><h2>Hola<i class="dot"></i></h2><h2>Bonjour<i class="dot"></i></h2><h2>Ciao<i class="dot"></i></h2><h2>Hallo<i class="dot"></i></h2><h2>السلام عليكم<i class="dot"></i></h2><h2>مرحبا<i class="dot"></i></h2></div></div>
+<div class="curtain" aria-hidden="true"><div class="curtain-label"><span id="curtainLabel"></span><i class="dot"></i></div></div>
+<script>try{document.getElementById('curtainLabel').textContent=sessionStorage.getItem('ptLabel')||''}catch(e){}</script>
+<div class="cursor-view" aria-hidden="true">View</div>
+<div class="float-wrap" id="floatImgs" aria-hidden="true"></div>
+<div class="btn btn-hamburger"><button type="button" class="btn-click magnetic" data-strength="50" data-strength-text="25" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span class="btn-fill"></span><span class="btn-text"><span class="btn-bars"></span><span class="btn-text-inner" data-i18n="nav.menu">Menu</span></span></button></div>
+<div class="fixed-nav-back"></div>
+<aside class="fixed-nav theme-dark" id="menu" aria-label="Main menu"><div class="fixed-nav-inner"><div><h5 data-i18n="menu.navigation">Navigation</h5><div class="stripe"></div><ul class="links-wrap"><li class="btn btn-link active"><a href="index.html" class="btn-click magnetic" data-strength="24" data-strength-text="12"><span class="btn-text"><span class="btn-text-inner" data-i18n="nav.home">Home</span></span></a></li><li class="btn btn-link"><a href="work.html" class="btn-click magnetic" data-strength="24" data-strength-text="12"><span class="btn-text"><span class="btn-text-inner" data-i18n="nav.work">Work</span></span></a></li><li class="btn btn-link"><a href="about.html" class="btn-click magnetic" data-strength="24" data-strength-text="12"><span class="btn-text"><span class="btn-text-inner" data-i18n="nav.about">About</span></span></a></li><li class="btn btn-link"><a href="contact.html" class="btn-click magnetic" data-strength="24" data-strength-text="12"><span class="btn-text"><span class="btn-text-inner" data-i18n="nav.contact">Contact</span></span></a></li></ul></div><div class="menu-foot"><div><h5 data-i18n="nav.contact">Contact</h5><a href="#" data-bind="email" class="menu-mail">email</a></div><div class="socials"><h5 data-i18n="menu.socials">Socials</h5><ul data-socials></ul></div><div class="lang-row"><h5 data-i18n="menu.language">Language</h5><button type="button" class="lang-btn" data-lang-toggle>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</button></div></div></div></aside>
+<main id="main">
+<header class="home-header theme-dark">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="personal-image"><img src="assets/img/profile-cutout.webp" srcset="assets/img/profile-cutout-640.webp 640w, assets/img/profile-cutout.webp 1024w" sizes="(max-width:1000px) 86vw, 40vw" alt="Portrait of Mohammad Muslim" width="1024" height="1536" fetchpriority="high" decoding="async"></div>
+  <div class="nav-bar on-dark"><div class="credits-top"><div class="btn btn-credit"><a href="index.html" class="btn-click magnetic nav-logo" data-strength="20" data-strength-text="10"><i class="avatar" aria-hidden="true"></i><span class="btn-text"><span class="btn-text-inner" data-i18n="name">Mohammad Muslim</span></span></a></div></div><ul class="links-wrap"><li class="btn btn-link"><a href="work.html" class="btn-click magnetic" data-strength="20" data-strength-text="10"><span class="btn-text"><span class="btn-text-inner" data-i18n="nav.work">Work</span></span></a></li><li class="btn btn-link"><a href="about.html" class="btn-click magnetic" data-strength="20" data-strength-text="10"><span class="btn-text"><span class="btn-text-inner" data-i18n="nav.about">About</span></span></a></li><li class="btn btn-link"><a href="contact.html" class="btn-click magnetic" data-strength="20" data-strength-text="10"><span class="btn-text"><span class="btn-text-inner" data-i18n="nav.contact">Contact</span></span></a></li><li class="btn btn-link btn-lang"><button type="button" class="btn-click magnetic" data-lang-toggle data-strength="20" data-strength-text="10"><span class="btn-text"><span class="btn-text-inner">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</span></span></button></li><li class="btn btn-cta"><a href="contact.html" class="btn-click magnetic" data-strength="30" data-strength-text="15"><span class="btn-text"><span class="btn-text-inner change" data-i18n="nav.talk">Let&rsquo;s talk</span></span></a></li></ul></div>
+  <div class="hero-title-block"><div class="eyebrow"><i class="live"></i><span data-i18n="eyebrow.available">Available for new projects</span></div><h4 data-i18n="hero.title" data-i18n-html><span>Freelance</span> Designer &amp; Developer</h4></div>
+  <div class="hanger"><p><span data-i18n="hero.located1">Located</span><span data-i18n="hero.located2">in the UAE</span></p>
+    <div class="globe" aria-hidden="true"><div class="globe-wrap"><div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle-hor"></div><div class="circle-hor-middle"></div></div></div></div>
+  <div class="big-name"><h1 aria-label="Mohammad Muslim"><span class="name-track"><span class="name-item" aria-hidden="true"><span data-i18n="name">Mohammad Muslim</span><span class="spacer">&mdash;</span></span><span class="name-item" aria-hidden="true"><span data-i18n="name">Mohammad Muslim</span><span class="spacer">&mdash;</span></span><span class="name-item" aria-hidden="true"><span data-i18n="name">Mohammad Muslim</span><span class="spacer">&mdash;</span></span><span class="name-item" aria-hidden="true"><span data-i18n="name">Mohammad Muslim</span><span class="spacer">&mdash;</span></span></span></h1></div>
+  <div class="hero-curve" aria-hidden="true"></div>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-grid">
-    <div class="hero-left">
-      <h1 class="hero-title">WEB<br>DEVELOPER</h1>
-      <p class="hero-hi">HI, I AM MOHAMMAD</p>
-      <p class="hero-copy">I build high-converting e-commerce and custom web platforms, blending clean design with solid engineering to craft seamless digital experiences.</p>
+<section class="section home-intro">
+  <div class="container medium"><div class="row">
+    <div class="flex-col"><h4 class="span-lines" data-i18n="intro.h4">Helping brands in the UAE and beyond stand out online. Sharp design, clean code and stores that sell. No nonsense, always on the cutting edge.</h4></div>
+    <div class="flex-col">
+      <div class="fade-in"><p data-i18n="intro.p">I blend design, development and e-commerce know-how to take a brand from first idea to a website or store that is ready to grow.</p></div>
+      <div class="btn btn-round"><a href="about.html" class="btn-click magnetic" data-strength="100" data-strength-text="50"><span class="btn-fill"></span><span class="btn-text"><span class="btn-text-inner" data-i18n="intro.about">About me</span></span></a></div>
     </div>
-    <div class="hero-center">
-      <div class="hero-photo-wrap">
-        <img src="111.png" alt="Mohammad Muslim" class="hero-photo"/>
+  </div></div>
+</section>
+
+<section class="section home-work" id="work">
+  <div class="container">
+    <div class="work-items-wrap" id="workWrap">
+      <div class="work-group">
+        <div class="grid-sub-title group-head"><h5 data-i18n="filter.design">Design</h5><a href="work.html?f=design" class="view-all"><span data-i18n="work.viewall">View all</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 11.5l9-9M3.5 2.5h8v8" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+        <ul class="work-items" id="workListDesign"></ul>
+      </div>
+      <div class="work-group">
+        <div class="grid-sub-title group-head"><h5 data-i18n="filter.development">Development</h5><a href="work.html?f=development" class="view-all"><span data-i18n="work.viewall">View all</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 11.5l9-9M3.5 2.5h8v8" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+        <ul class="work-items" id="workListDev"></ul>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="follow-block">
-        <div class="follow-label">FOLLOW ME</div>
-        <div class="hero-social">
-          <a href="https://www.facebook.com/mohammadmithai53/" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/mohammad.mithai53/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2zm-.2 2A3.6 3.6 0 004 7.6v8.8A3.6 3.6 0 007.6 20h8.8A3.6 3.6 0 0020 16.4V7.6A3.6 3.6 0 0016.4 4H7.6zm9.65 1.5a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/mohammad-muslim-878291180/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
-          </a>
-          <a href="https://github.com/mohammadmithai5123" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 24 24"><path d="M12 .5C5.37.5 0 5.98 0 12.73c0 5.4 3.44 9.98 8.21 11.59.6.11.82-.27.82-.59 0-.29-.01-1.05-.02-2.06-3.34.74-4.04-1.64-4.04-1.64-.55-1.42-1.34-1.8-1.34-1.8-1.1-.77.08-.76.08-.76 1.22.09 1.86 1.28 1.86 1.28 1.08 1.89 2.83 1.34 3.52 1.03.11-.8.42-1.34.76-1.65-2.67-.31-5.47-1.37-5.47-6.07 0-1.34.47-2.44 1.24-3.3-.12-.31-.54-1.57.12-3.28 0 0 1.01-.33 3.3 1.26a11.1 11.1 0 016 0c2.29-1.59 3.3-1.26 3.3-1.26.66 1.71.24 2.97.12 3.28.77.86 1.24 1.96 1.24 3.3 0 4.71-2.81 5.76-5.49 6.06.43.38.81 1.12.81 2.26 0 1.63-.02 2.95-.02 3.35 0 .32.21.71.82.59C20.56 22.7 24 18.12 24 12.73 24 5.98 18.63.5 12 .5z"/></svg>
-          </a>
+    <div class="work-tiles">
+      <div class="work-group"><div class="grid-sub-title group-head"><h5 data-i18n="filter.design">Design</h5></div><div class="tiles" id="tilesDesign"></div></div>
+      <div class="work-group"><div class="grid-sub-title group-head"><h5 data-i18n="filter.development">Development</h5></div><div class="tiles" id="tilesDev"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section center-grid-btn">
+  <div class="container"><div class="btn btn-normal"><a href="work.html" class="btn-click magnetic" data-strength="25" data-strength-text="15"><span class="btn-fill"></span><span class="btn-text"><span class="btn-text-inner change" data-i18n="work.more">More work</span></span><span class="count-nr" data-count-projects>12</span></a></div></div>
+</section>
+
+<section class="marquee" aria-hidden="true"><div class="marquee-track"><span>Shopify</span><i></i><span>WordPress</span><i></i><span>Magento</span><i></i><span data-i18n="marq.brand">Brand identity</span><i></i><span data-i18n="marq.uiux">UI / UX</span><i></i><span data-i18n="marq.pack">Packaging</span><i></i><span data-i18n="marq.migr">Migrations</span><i></i><span data-i18n="marq.pitch">Pitch decks</span><i></i><span>Shopify</span><i></i><span>WordPress</span><i></i><span>Magento</span><i></i><span data-i18n="marq.brand">Brand identity</span><i></i><span data-i18n="marq.uiux">UI / UX</span><i></i><span data-i18n="marq.pack">Packaging</span><i></i><span data-i18n="marq.migr">Migrations</span><i></i><span data-i18n="marq.pitch">Pitch decks</span><i></i></div></section>
+
+<div class="footer-rounded-div" aria-hidden="true"><div class="rd"></div></div>
+<div class="footer-wrap theme-dark">
+  <footer class="footer"><div class="footer-inner">
+    <div class="container medium">
+      <div class="eyebrow"><i class="live"></i><span data-i18n="eyebrow.footer">Have a project in mind?</span></div>
+      <h2><span><i class="profile-picture" role="img" aria-label="Mohammad"></i> <span data-i18n="footer.lets">Let&rsquo;s work</span></span><span data-i18n="footer.together">together</span></h2>
+      <div class="stripe-row">
+        <div class="stripe animate"></div>
+        <div class="btn btn-round"><a href="contact.html" class="btn-click magnetic" data-strength="100" data-strength-text="50"><span class="btn-fill"></span><span class="btn-text"><span class="btn-text-inner" data-i18n="footer.touch">Get in touch</span></span></a></div>
+      </div>
+      <div class="contact-links">
+        <div class="btn btn-normal"><a href="#" data-bind="email" class="btn-click magnetic" data-strength="25" data-strength-text="15"><span class="btn-fill"></span><span class="btn-text"><span class="btn-text-inner change">email</span></span></a></div>
+        <div class="btn btn-normal"><a href="#" data-bind="phone" class="btn-click magnetic" data-strength="25" data-strength-text="15"><span class="btn-fill"></span><span class="btn-text"><span class="btn-text-inner change">phone</span></span></a></div>
+        <div class="btn btn-normal"><a href="#" data-bind="whatsapp" class="btn-click magnetic" data-strength="25" data-strength-text="15"><span class="btn-fill"></span><span class="btn-text"><span class="btn-text-inner change" data-i18n="footer.whatsapp">WhatsApp</span></span></a></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="bottom-footer">
+        <div class="meta">
+          <div><h5 data-i18n="footer.based">Based in</h5><p data-i18n="footer.uae">United Arab Emirates</p></div>
+          <div><h5 data-i18n="footer.time">Local time</h5><p data-time>--:-- --</p></div>
         </div>
+        <div class="socials"><h5 data-i18n="footer.socials">Socials</h5><ul data-socials></ul></div>
       </div>
-      <p class="hero-right-copy">I design intuitive interfaces and develop user-centric solutions that scale.</p>
-      <h2 class="hero-title-r">FULL STACK<br>CODER</h2>
+      <div class="credit-line"><p>&copy; <span data-year>2026</span> <span data-i18n="footer.rights">Mohammad Muslim. All rights reserved.</span></p>
+        <ul><li><a href="work.html" data-i18n="nav.work">Work</a></li><li><a href="about.html" data-i18n="nav.about">About</a></li><li><a href="contact.html" data-i18n="nav.contact">Contact</a></li></ul></div>
     </div>
-  </div>
-</section>
+  </div></footer>
+</div>
+</main>
+<button type="button" class="to-top" aria-label="Back to top"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 11.5l9-9M3.5 2.5h8v8" stroke="currentColor" stroke-width="1.5"/></svg></button>
+<script src="assets/dist/vendor.min.js?v=7e2fdeac" defer></script>
+<script src="assets/dist/app.min.js?v=e94f75fd" defer></script>
 
-<!-- SERVICES -->
-<section class="sec sec-white" id="services">
-  <div class="wrap">
-    <h2 class="sec-h reveal">MY SERVICES</h2>
-    <p class="sec-sub reveal reveal-d1">End-to-end web solutions — from storefronts that convert to migrations that land clean.</p>
-    <div class="services-grid">
-      <article class="svc-card reveal reveal-d1">
-        <div class="svc-img"><img src="E-Commerce.png" alt="E-Commerce" loading="lazy"/></div>
-        <h3>E-COMMERCE</h3>
-        <p>Shopify, WooCommerce, Magento & BigCommerce storefronts built to sell — custom themes, checkout flows, and performance tuned for conversion.</p>
-      </article>
-      <article class="svc-card reveal reveal-d2">
-        <div class="svc-img"><img src="WebDevelopment.png" alt="Web Development" loading="lazy"/></div>
-        <h3>WEB DEVELOPMENT</h3>
-        <p>WordPress, Webflow, and custom MERN builds. Clean frontends, solid backends, and sites that stay fast as they grow.</p>
-      </article>
-      <article class="svc-card reveal reveal-d3">
-        <div class="svc-img"><img src="Migration.png" alt="Migrations" loading="lazy"/></div>
-        <h3>MIGRATIONS</h3>
-        <p>Seamless Magento → Shopify / WordPress moves with SEO preserved, data intact, and zero drama at launch.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- RECENT WORKS -->
-<section class="sec sec-blue" id="works">
-  <div class="wrap">
-    <h2 class="sec-h reveal">MY RECENT WORKS</h2>
-    <p class="sec-sub reveal reveal-d1">Selected builds across Shopify, WordPress, and custom stacks.</p>
-    <div class="works-grid" id="worksGrid"></div>
-    <div class="works-more reveal"><a href="#projects" class="btn-outline">View All Projects →</a></div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats">
-  <div class="wrap">
-    <div class="stats-grid">
-      <div class="stat-item reveal"><div class="stat-n" data-count="8">0</div><div class="stat-l">Years Experience</div></div>
-      <div class="stat-item reveal reveal-d1"><div class="stat-n" data-count="100">0</div><div class="stat-l">Projects Done</div></div>
-      <div class="stat-item reveal reveal-d2"><div class="stat-n" data-count="8">0</div><div class="stat-l">Platform Migrations</div></div>
-      <div class="stat-item reveal reveal-d3"><div class="stat-n">100%</div><div class="stat-l">Client Satisfaction</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="sec sec-white" id="process">
-  <div class="wrap">
-    <h2 class="sec-h reveal">MY WORK PROCESS</h2>
-    <p class="sec-sub reveal reveal-d1">A clear path from idea to launch — researched, designed, built, and shipped.</p>
-    <div class="process-grid">
-      <article class="proc-card reveal reveal-d1">
-        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Research" loading="lazy"/>
-        <h3><em>1</em> RESEARCH</h3>
-        <p>Understand the brand, audience, and goals before a single line of code.</p>
-      </article>
-      <article class="proc-card reveal reveal-d2">
-        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&q=80" alt="Design" loading="lazy"/>
-        <h3><em>2</em> DESIGN</h3>
-        <p>Structure UX and visuals that feel premium and convert with clarity.</p>
-      </article>
-      <article class="proc-card reveal reveal-d3">
-        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80" alt="Build" loading="lazy"/>
-        <h3><em>3</em> BUILD</h3>
-        <p>Ship clean, scalable code across CMS, e-commerce, or custom stacks.</p>
-      </article>
-      <article class="proc-card reveal reveal-d4">
-        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&q=80" alt="Launch" loading="lazy"/>
-        <h3><em>4</em> LAUNCH</h3>
-        <p>Test, optimize, and go live with confidence — then iterate with data.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="sec sec-off" id="testimonials">
-  <div class="wrap">
-    <div class="t-head reveal">
-      <div>
-        <h2 class="sec-h">TESTIMONIALS</h2>
-        <p class="sec-sub" style="margin-bottom:0">What clients say after we ship together.</p>
-      </div>
-      <div class="t-dots" id="tDots"></div>
-    </div>
-    <div class="t-grid" id="tGrid"></div>
-  </div>
-</section>
-
-<!-- PLATFORMS -->
-<section class="sec sec-blue" id="platforms">
-  <div class="wrap">
-    <h2 class="sec-h reveal">MY PLATFORMS</h2>
-    <p class="sec-sub reveal reveal-d1">The stacks I use to ship production-ready experiences.</p>
-    <div class="plat-grid">
-      <div class="plat-card reveal reveal-d1">
-        <img class="plat-ico" src="shopify.png" alt="Shopify" width="88" height="88"/>
-        <h4>SHOPIFY</h4>
-        <p>Themes, apps & high-converting stores</p>
-      </div>
-      <div class="plat-card reveal reveal-d2">
-        <img class="plat-ico" src="wordpress.png" alt="WordPress" width="88" height="88"/>
-        <h4>WORDPRESS</h4>
-        <p>Custom sites, Elementor & WooCommerce</p>
-      </div>
-      <div class="plat-card reveal reveal-d3">
-        <img class="plat-ico" src="react.png" alt="React / Node" width="88" height="88"/>
-        <h4>REACT / NODE</h4>
-        <p>MERN apps & API-driven platforms</p>
-      </div>
-      <div class="plat-card reveal reveal-d4">
-        <img class="plat-ico" src="magento.png" alt="Magento" width="88" height="88"/>
-        <h4>MAGENTO</h4>
-        <p>Legacy builds & clean migrations out</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ALL PROJECTS -->
-<section class="sec sec-blue" id="projects" style="padding-top:72px">
-  <div class="wrap">
-    <h2 class="sec-h reveal">ALL PROJECTS</h2>
-    <p class="sec-sub reveal reveal-d1">Browse the full portfolio by platform or project type.</p>
-    <div class="filter-row reveal">
-      <button class="filt active" data-f="all">All</button>
-      <button class="filt" data-f="shopify">Shopify</button>
-      <button class="filt" data-f="wordpress">WordPress</button>
-      <button class="filt" data-f="migration">Migrations</button>
-      <button class="filt" data-f="custom">Custom</button>
-    </div>
-    <div class="pgrid" id="pgrid"></div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta" id="contact">
-  <div class="cta-inner">
-    <h2 class="cta-h reveal">HAVE A PROJECT?<br>LET'S TALK</h2>
-    <a href="mailto:mohammad.mithai5123@gmail.com?subject=Project%20Inquiry" class="cta-btn reveal reveal-d2">
-      HIRE ME
-      <small>→</small>
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div>
-        <a class="foot-email" href="mailto:mohammad.mithai5123@gmail.com">mohammad.mithai5123<br>@gmail.com</a>
-      </div>
-      <div class="foot-col">
-        <h5>COMPANY</h5>
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#works">Work</a>
-        <a href="#process">Process</a>
-      </div>
-      <div class="foot-col">
-        <h5>FOLLOW</h5>
-        <a href="https://www.linkedin.com/in/mohammad-muslim-878291180/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/mohammad.mithai53/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.facebook.com/mohammadmithai53/" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://github.com/mohammadmithai5123" target="_blank" rel="noopener">GitHub</a>
-      </div>
-      <div class="foot-col">
-        <h5>ADDRESS</h5>
-        <p>Karachi, Pakistan</p>
-        <p>+92 332 354 8947</p>
-        <p>Open to freelance & full-time</p>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <div class="foot-logo">MOHAMMAD</div>
-      <p>© 2026 Mohammad Muslim. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
-<script>
-/* Nav */
-const navEl=document.getElementById('mainNav');
-const navLinks=document.querySelectorAll('#navLinks a');
-window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',scrollY>40));
-document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
-navLinks.forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
-
-const sections=[...document.querySelectorAll('section[id]')];
-window.addEventListener('scroll',()=>{
-  const y=scrollY+120;
-  let current='home';
-  sections.forEach(s=>{if(s.offsetTop<=y) current=s.id});
-  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
-},{passive:true});
-
-/* Reveal on scroll */
-function observeReveal(){
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
-    });
-  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
-}
-observeReveal();
-
-/* Counters */
-const sObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting) return;
-    const t=+e.target.dataset.count;
-    if(!t){sObs.unobserve(e.target);return}
-    let c=0;
-    const iv=setInterval(()=>{
-      c=Math.min(c+t/35,t);
-      e.target.textContent=Math.floor(c)+(t>=10?'+':'');
-      if(c>=t)clearInterval(iv);
-    },30);
-    sObs.unobserve(e.target);
-  });
-},{threshold:.4});
-document.querySelectorAll('.stat-n[data-count]').forEach(el=>sObs.observe(el));
-
-/* Testimonials */
-const starSvg='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.8 6.1 20.7l1.2-6.6L2.5 9.5l6.6-.9L12 2.5z"/></svg>';
-const testimonials=[
-  {name:'Sarah Mitchell',role:'Marketing Director · Beauty Brand',img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face',stars:5,quote:'Our Magento to Shopify migration was seamless. SEO stayed intact and the new store converted better from week one. Mohammad made a stressful rebuild feel easy.'},
-  {name:'James Carter',role:'Founder · Outdoor Retail',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',stars:5,quote:'Mohammad treats every build like his own business. Deadlines met, communication clear, and the final Shopify theme exceeded what we expected from a custom storefront.'},
-  {name:'Priya Sharma',role:'Product Manager · Travel Platform',img:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face',stars:5,quote:'From enterprise booking flows to editorial pages — reliable full-stack delivery with strong attention to performance. We would hire him again without hesitation.'},
-  {name:'Daniel Brooks',role:'CEO · F&B Brand',img:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',stars:5,quote:'He rebuilt our storefront with flavor explorer and subscription flows that actually convert. Fast, thoughtful, and always a step ahead on UX details.'},
-  {name:'Emily Nguyen',role:'Ops Lead · Jewelry E-Commerce',img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face',stars:5,quote:'Complex catalog, wholesale portal, and custom configurator — delivered cleanly. Mohammad communicates clearly and never disappears mid-project.'},
-  {name:'Omar Hassan',role:'CTO · EdTech Startup',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',stars:5,quote:'Our LMS and student portals needed a developer who understood both product and code. Mohammad shipped a stable WordPress build we still scale on today.'},
-];
-let tPage=0;
-const tPerPage=3;
-function starsHtml(n){return '<div class="t-stars" aria-label="'+n+' out of 5 stars">'+starSvg.repeat(n)+'</div>'}
-function renderTestimonials(page){
-  tPage=page;
-  const start=page*tPerPage;
-  const slice=testimonials.slice(start,start+tPerPage);
-  document.getElementById('tGrid').innerHTML=slice.map(t=>
-    '<article class="t-card">'+
-      '<div class="t-top">'+starsHtml(t.stars)+'<div class="t-mark">”</div></div>'+
-      '<p class="t-quote">“'+t.quote+'”</p>'+
-      '<div class="t-person">'+
-        '<img class="t-avatar" src="'+t.img+'" alt="'+t.name+'" loading="lazy" width="56" height="56"/>'+
-        '<div><div class="t-name">'+t.name+'</div><div class="t-role">'+t.role+'</div></div>'+
-      '</div>'+
-    '</article>'
-  ).join('');
-  const pages=Math.ceil(testimonials.length/tPerPage);
-  document.getElementById('tDots').innerHTML=Array.from({length:pages},(_,i)=>
-    '<button class="t-dot'+(i===page?' active':'')+'" aria-label="Testimonials page '+(i+1)+'" data-page="'+i+'"></button>'
-  ).join('');
-  document.querySelectorAll('#tDots .t-dot').forEach(btn=>{
-    btn.addEventListener('click',()=>renderTestimonials(+btn.dataset.page));
-  });
-}
-renderTestimonials(0);
-setInterval(()=>{
-  const pages=Math.ceil(testimonials.length/tPerPage);
-  renderTestimonials((tPage+1)%pages);
-},7000);
-
-/* Featured works */
-const featured=[
-  {name:"Teton Gear",type:"Outdoor · Shopify",url:"https://tetongear.com/",img:"https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80"},
-  {name:"EX1 Cosmetics",type:"Beauty · Shopify",url:"https://ex1cosmetics.com/",img:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80"},
-  {name:"Trafalgar Travel",type:"Travel · WordPress",url:"https://www.trafalgar.com/en-us",img:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80"},
-  {name:"My Mochi",type:"F&B · Shopify",url:"https://www.mymochi.com/",img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80"},
-  {name:"Very Special Games",type:"Gaming · Custom",url:"https://www.veryspecialgames.com/",img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80"},
-  {name:"Silver Mirror",type:"Beauty · Custom",url:"https://silvermirror.com/",img:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80"},
-];
-document.getElementById('worksGrid').innerHTML=featured.map(w=>
-  '<article class="work-card reveal" onclick="window.open(\''+w.url+'\',\'_blank\')">'+
-    '<div class="work-thumb"><img src="'+w.img+'" alt="'+w.name+'" loading="lazy"/><div class="work-over"><span>View Project</span></div></div>'+
-    '<h4>'+w.name.toUpperCase()+'</h4><span class="work-type">'+w.type+'</span></article>'
-).join('');
-observeReveal();
-
-/* Projects */
-const projects=[
-  {name:"Teton Gear",url:"https://tetongear.com/",type:"Outdoor · E-Commerce",desc:"Premium outdoor gear e-commerce with custom filtering and performance-optimized pages.",f:"shopify",fb:"https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=700&q=80"},
-  {name:"EX1 Cosmetics",url:"https://ex1cosmetics.com/",type:"Beauty · Shopify",desc:"Luxury beauty brand with editorial product pages and custom Shopify theme.",f:"shopify",fb:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=700&q=80"},
-  {name:"Trafalgar Travel",url:"https://www.trafalgar.com/en-us",type:"Travel · Enterprise",desc:"Enterprise travel platform with tour listings, booking flows, and itinerary management.",f:"wordpress",fb:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=700&q=80"},
-  {name:"Westcott Press",url:"https://westcottpress.com/",type:"Publishing · WordPress",desc:"Publishing house with custom catalog, author pages, and integrated ordering.",f:"wordpress",fb:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=700&q=80"},
-  {name:"Kiefer",url:"https://www.kiefer.com/",type:"Sports · Shopify",desc:"Aquatic sports retailer with large catalog management and performance-tuned storefront.",f:"shopify",fb:"https://images.unsplash.com/photo-1530549387789-4c1017266635?w=700&q=80"},
-  {name:"US Jewelry Factory",url:"https://www.usjewelryfactory.com/",type:"Jewelry · E-Commerce",desc:"Custom jewelry platform with product configurator and wholesale trade portal.",f:"wordpress",fb:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=700&q=80"},
-  {name:"My Mochi Ice Cream",url:"https://www.mymochi.com/",type:"F&B · Shopify",desc:"National ice cream brand with flavor explorer, store finder, and subscription.",f:"shopify",fb:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=700&q=80"},
-  {name:"Lira Learning",url:"https://liralearning.com/",type:"EdTech · WordPress",desc:"Education platform with course management, student portals, and LMS integration.",f:"wordpress",fb:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&q=80"},
-  {name:"Automation Werks",url:"https://www.automationwerks.com/",type:"Industrial · B2B",desc:"B2B industrial automation website with product catalog and lead generation.",f:"wordpress",fb:"https://images.unsplash.com/photo-1565043666747-69f6646db940?w=700&q=80"},
-  {name:"Very Special Games",url:"https://www.veryspecialgames.com/",type:"Gaming · Custom",desc:"Custom gaming studio site with dynamic title showcases and interactive visuals.",f:"custom",fb:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=700&q=80"},
-  {name:"New South Botanicals",url:"http://newsouthbotanicals.com/",type:"Wellness · E-Commerce",desc:"Botanical wellness brand with product education pages and subscription.",f:"wordpress",fb:"https://images.unsplash.com/photo-1550159930-40066082a4fc?w=700&q=80"},
-  {name:"Roger Kallen",url:"https://www.rogerkallen.com/",type:"Art · Portfolio",desc:"Fine art photographer portfolio with gallery management and print ordering.",f:"custom",fb:"https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=700&q=80"},
-  {name:"Silver Mirror Facial Bar",url:"https://silvermirror.com/",type:"Beauty · Custom",desc:"Luxury facial bar brand with AI-powered booking and editorial UX.",f:"custom",fb:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&q=80"},
-  {name:"Temptu",url:"https://temptu.com/",type:"Pro Makeup · Migration",desc:"Magento to Shopify migration preserving product data and order history.",f:"migration",isMig:true,migLabel:"Magento → Shopify",fb:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=700&q=80"},
-  {name:"Bioeffect",url:"https://bioeffect.de/",type:"Skincare · Migration",desc:"Skincare re-platformed from Magento to Shopify with multi-currency.",f:"migration",isMig:true,migLabel:"Magento → Shopify",fb:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=700&q=80"},
-];
-
-function renderCards(f){
-  const list=f==='all'?projects:projects.filter(p=>p.f===f);
-  document.getElementById('pgrid').innerHTML=list.map(p=>
-    '<div class="pcard reveal" onclick="window.open(\''+p.url+'\',\'_blank\')">'+
-      '<div class="pcard-thumb"><img src="https://api.microlink.io/?url='+encodeURIComponent(p.url)+'&screenshot=true&meta=false&embed=screenshot.url" alt="'+p.name+'" loading="lazy" onerror="this.src=\''+p.fb+'\'"/>'+
-      (p.isMig?'<div class="mbadge">'+p.migLabel+'</div>':'')+
-      '</div><div class="pcard-body"><div class="pcard-type">'+p.type+'</div><div class="pcard-title">'+p.name+'</div><div class="pcard-desc">'+p.desc+'</div></div></div>'
-  ).join('');
-  observeReveal();
-}
-document.querySelectorAll('.filt').forEach(b=>{
-  b.addEventListener('click',()=>{
-    document.querySelectorAll('.filt').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    renderCards(b.dataset.f);
-  });
-});
-renderCards('all');
-</script>
 </body>
 </html>
